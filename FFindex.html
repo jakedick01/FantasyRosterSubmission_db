@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Football Challenge</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Fantasy Football Challenge</h1>
+        <form action="/" method="POST">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required>
+            <br>
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required>
+            <br>
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <button type="submit">Continue to Roster</button>
+        </form>
+    </div>
+</body>
+</html>
+

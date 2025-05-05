@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submissions</title>
+</head>
+<body>
+    <h1>All Submissions</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>QB</th>
+            <th>RB1</th>
+            <th>RB2</th>
+            <th>WR1</th>
+            <th>WR2</th>
+            <th>WR3</th>
+            <th>FLX</th>
+            <th>CPT</th>
+            <th>K</th>
+            <th>Submission Time</th>
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td>{{ row[0] }}</td>  <!-- ID -->
+            <td>{{ row[1] }}</td>  <!-- First Name -->
+            <td>{{ row[2] }}</td>  <!-- Last Name -->
+            <td>{{ row[3] }}</td>  <!-- Email -->
+            <td>{{ row[4] }}</td>  <!-- QB -->
+            <td>{{ row[5] }}</td>  <!-- RB1 -->
+            <td>{{ row[6] }}</td>  <!-- RB2 -->
+            <td>{{ row[7] }}</td>  <!-- WR1 -->
+            <td>{{ row[8] }}</td>  <!-- WR2 -->
+            <td>{{ row[9] }}</td>  <!-- WR3 -->
+            <td>{{ row[10] }}</td> <!-- FLX -->
+            <td>{{ row[11] }}</td> <!-- CPT -->
+            <td>{{ row[12] }}</td> <!-- K -->
+            <td>{{ row[13] }}</td> <!-- Submission Time -->
+        </tr>
+        {% endfor %}
+    </table>
+    <form action="/clear_submissions" method="POST">
+        <button type="submit">Clear All Submissions</button>
+    </form>
+    <a href="/export" class="btn btn-primary">Download Submissions as Excel</a>
+    </div>
+</body>
+</html>

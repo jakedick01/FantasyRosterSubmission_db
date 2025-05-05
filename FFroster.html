@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Roster</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <!-- Include jQuery (required for Select2) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Include Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Include Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+    <style>
+        .dropdown-container {
+            display: flex;
+            align-items: center;
+            width: 80%;
+        }
+
+        /* Adjust the dropdown width to make them consistent and extend the length */
+        .select2 {
+            width: 100% !important; /* Ensures dropdown takes the full available space */
+            padding: 10px; /* Adds padding inside the dropdown for better look */
+            margin-right: 20px; /* Adds space between dropdown and logo */
+        }
+
+        .logo-container {
+            width: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0; /* Initially hide logo */
+            transition: opacity 0.5s ease; /* Fade in transition */
+        }
+
+        /* Adjust the size and margin of the logos */
+        .player-logo {
+            width: 60px !important; /* Adjust logo size to be slightly bigger */
+            height: 60px !important ; /* Maintain aspect ratio */
+            margin-left: 80px; /* Moves the logo more to the right */
+        }
+
+        .player-option {
+            display: flex;
+            align-items: center;
+        }
+
+        .player-logo {
+            width: 30px; /* Adjust logo size */
+            height: 30px;
+            margin-left: 10px; /* Adjust space between name/position and logo */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Submit Your Roster</h1>
+        <form action="/submit" method="POST">
+            <p>Name: {{ first_name }} {{ last_name }}</p>
+            <p>Email: {{ email }}</p>
+
+            <!-- Quarterback Dropdown -->
+            <label for="qb">Quarterback (QB):</label>
+            <div class="dropdown-container">
+                <select id="qb" name="qb" class="select2" required>
+                    <option value="">Select QB</option>
+                    {% for player in qb_players %}
+                        <option value="{{ player['Name'] }}" data-team="{{ player['Team'] }}" data-logo="{{ player['Logo'] }}">
+                            {{ player['Name'] }} ({{ player['Team'] }})
+                        </option>
+                    {% endfor %}
+                </select>
+                <div class="logo-container" id="qb-logo">
+                    <img src="" alt="Team Logo" id="qb-team-logo" class="player-logo">
+                </div>
+            </div>
+            <br>
+
+            <!-- Running Back 1 Dropdown -->
+            <label for="rb1">Running Back (RB1):</label>
+            <div class="dropdown-container">
+                <select id="rb1" name="rb1" class="select2" required>
+                    <option value="">Select RB1</option>
+                    {% for player in rb_players %}
+                        <option value="{{ player['Name'] }}" data-team="{{ player['Team'] }}" data-logo="{{ player['Logo'] }}">
+                            {{ player['Name'] }} ({{ player['Team'] }})
+                        </option>
+                    {% endfor %}
+                </select>
+                <div class="logo-container" id="rb1-logo">
+                    <img src="" alt="Team Logo" id="rb1-team-logo" class="player-logo">
+                </div>
+            </div>
+            <br>
+
+            <!-- Running Back 2 Dropdown -->
+            <label for="rb2">Running Back (RB2):</label>
+            <div class="dropdown-container">
+                <select id="rb2" name="rb2" class="select2" required>
+                    <option value="">Select RB2</option>
+                    {% for player in rb_players %}
+                        <option value="{{ player['Name'] }}" data-team="{{ player['Team'] }}" data-logo="{{ player['Logo'] }}">
+                            {{ player['Name'] }} ({{ player['Team'] }})
+                        </option>
+                    {% endfor %}
+                </select>
+                <div class="logo-container" id="rb2-logo">
+                    <img src="" alt="Team Logo" id="rb2-team-logo" class="player-logo">
+                </div>
+            </div>
+            <br>
+
+            <!-- Wide Receiver/Tight End 1 Dropdown -->
+            <label for="wr1">Wide Receiver/Tight End (WR/TE1):</label>
+            <div class="dropdown-container">
+                <select id="wr1" name="wr1" class="select2" required>
+                    <option value="">Select WR/TE1</option>
+                    {% for player in wr_players %}
+                        <option value="{{ player['Name'] }}" data-team="{{ player['Team'] }}" data-logo="{{ player['Logo'] }}">
+                            {{ player['Name'] }} ({{ player['Team'] }})
+                        </option>
+                    {% endfor %}
+                </select>
+                <div class="logo-container" id="wr1-logo">
+                    <img src="" alt="Team Logo" id="wr1-team-logo" class="player-logo">
+                </div>
+            </div>
+            <br>
+
+            <!-- Wide Receiver/Tight End 2 Dropdown -->
+            <label for="wr2">Wide Receiver/Tight End (WR/TE2):</label>
+            <div class="dropdown-container">
+                <select id="wr2" name="wr2" class="select2" required>
+                    <option value="">Select WR/TE2</option>
+                    {% for player in wr_players %}
+                        <option value="{{ player['Name'] }}" data-team="{{ player['Team'] }}" data-logo="{{ player['Logo'] }}">
+                            {{ player['Name'] }} ({{ player['Team'] }})
+                        </option>
+                    {% endfor %}
+                </select>
+                <div class="logo-container" id="wr2-logo">
+                    <img src="" alt="Team Logo" id="wr2-team-logo" class="player-logo">
+                </div>
+            </div>
+            <br>
+
+            <!-- Wide Receiver/Tight End 3 Dropdown -->
+            <label for="wr3">Wide Receiver/Tight End (WR/TE3):</label>
+            <div class="dropdown-container">
+                <select id="wr3" name="wr3" class="select2" required>
+                    <option value="">Select WR/TE3</option>
+                    {% for player in wr_players %}
+                        <option value="{{ player['Name'] }}" data-team="{{ player['Team'] }}" data-logo="{{ player['Logo'] }}">
+                            {{ player['Name'] }} ({{ player['Team'] }})
+                        </option>
+                    {% endfor %}
+                </select>
+                <div class="logo-container" id="wr3-logo">
+                    <img src="" alt="Team Logo" id="wr3-team-logo" class="player-logo">
+                </div>
+            </div>
+            <br>
+
+            <!-- Flex Position (FLX) Dropdown -->
+            <label for="flx">Flex (FLX):</label>
+            <div class="dropdown-container">
+                <select id="flx" name="flx" class="select2" required>
+                    <option value="">Select FLEX (RB/WR/TE)</option>
+                    {% for player in rb_players %}
+                        <option value="{{ player['Name'] }}" data-team="{{ player['Team'] }}" data-logo="{{ player['Logo'] }}">
+                            {{ player['Name'] }} ({{ player['Team'] }}) - RB
+                        </option>
+                    {% endfor %}
+                    {% for player in wr_players %}
+                        <option value="{{ player['Name'] }}" data-team="{{ player['Team'] }}" data-logo="{{ player['Logo'] }}">
+                            {{ player['Name'] }} ({{ player['Team'] }}) - WR
+                        </option>
+                    {% endfor %}
+                    {% for player in te_players %}
+                        <option value="{{ player['Name'] }}" data-team="{{ player['Team'] }}" data-logo="{{ player['Logo'] }}">
+                            {{ player['Name'] }} ({{ player['Team'] }}) - TE
+                        </option>
+                    {% endfor %}
+                </select>
+                <div class="logo-container" id="flx-logo">
+                    <img src="" alt="Team Logo" id="flx-team-logo" class="player-logo">
+                </div>
+            </div>
+            <br>
+
+            <!-- Captain Position (C) Dropdown -->
+            <label for="cpt">Captain (CPT):</label>
+            <div class="dropdown-container">
+                <select id="cpt" name="cpt" class="select2" required>
+                    <option value="">Select CAPTAIN (Any Position)</option>
+                    {% for player in qb_players %}
+                        <option value="{{ player['Name'] }}" data-team="{{ player['Team'] }}" data-logo="{{ player['Logo'] }}">
+                            {{ player['Name'] }} ({{ player['Team'] }}) - QB
+                        </option>
+                    {% endfor %}
+                    {% for player in rb_players %}
+                        <option value="{{ player['Name'] }}" data-team="{{ player['Team'] }}" data-logo="{{ player['Logo'] }}">
+                            {{ player['Name'] }} ({{ player['Team'] }}) - RB
+                        </option>
+                    {% endfor %}
+                    {% for player in wr_players %}
+                        <option value="{{ player['Name'] }}" data-team="{{ player['Team'] }}" data-logo="{{ player['Logo'] }}">
+                            {{ player['Name'] }} ({{ player['Team'] }}) - WR
+                        </option>
+                    {% endfor %}
+                    {% for player in te_players %}
+                        <option value="{{ player['Name'] }}" data-team="{{ player['Team'] }}" data-logo="{{ player['Logo'] }}">
+                            {{ player['Name'] }} ({{ player['Team'] }}) - TE
+                        </option>
+                    {% endfor %}
+                    {% for player in k_players %}
+                        <option value="{{ player['Name'] }}" data-team="{{ player['Team'] }}" data-logo="{{ player['Logo'] }}">
+                            {{ player['Name'] }} ({{ player['Team'] }}) - K
+                        </option>
+                    {% endfor %}
+                </select>
+                <div class="logo-container" id="cpt-logo">
+                    <img src="" alt="Team Logo" id="cpt-team-logo" class="player-logo">
+                </div>
+            </div>
+            <br>
+
+            <!-- Kicker Dropdown -->
+            <label for="k">Kicker (K):</label>
+            <div class="dropdown-container">
+                <select id="k" name="k" class="select2" required>
+                    <option value="">Select K</option>
+                    {% for player in k_players %}
+                        <option value="{{ player['Name'] }}" data-team="{{ player['Team'] }}" data-logo="{{ player['Logo'] }}">
+                            {{ player['Name'] }} ({{ player['Team'] }})
+                        </option>
+                    {% endfor %}
+                </select>
+                <div class="logo-container" id="k-logo">
+                    <img src="" alt="Team Logo" id="k-team-logo" class="player-logo">
+                </div>
+            </div>
+            <br>
+
+            <button type="submit">Submit Roster</button>
+        </form>
+        <!-- Initialize Select2 for all select elements -->
+        <script>
+            $(document).ready(function() {
+                // Initialize Select2 with search functionality
+                $(".select2").select2({
+                    placeholder: "Search and select a player", // Placeholder text
+                    allowClear: true, // Allows clearing the selection
+                    width: '100%' // Ensures full width
+                });
+
+                // Function to update the logo next to the selected player
+                function updateLogo(selectElement, logoContainerId, logoImageId) {
+                    let selectedPlayer = $(selectElement).find(':selected');
+                    let teamAbbreviation = selectedPlayer.data('team');  // Get the team abbreviation (e.g., 'BUF')
+
+                    console.log("Selected Player: ", selectedPlayer.text());  // Log the selected player name and team
+                    console.log("Team Abbreviation: ", teamAbbreviation);  // Log the team abbreviation (e.g., 'BUF')
+
+                    let logoContainer = $(logoContainerId);
+                    let teamLogo = teamAbbreviation ? teamAbbreviation + '_logo.png' : '';  // Construct the logo filename
+
+                    if (teamLogo) {
+                        // Set the logo image source to the correct path in the logos_cache folder
+                        $(logoImageId).attr('src', '/static/logos_cache/' + teamLogo);  // Path to logos in the logos_cache folder
+                        logoContainer.css('opacity', 1);  // Fade in the logo by setting opacity to 1
+                    } else {
+                        console.log("No logo available for this player.");  // Log if there's no logo available for the player
+                        logoContainer.css('opacity', 0);  // Hide the logo if no team logo is available
+                    }
+                }
+
+                // Handle player selection for each dropdown and update logos accordingly
+                $('#qb').on('change', function() {
+                    updateLogo(this, '#qb-logo', '#qb-team-logo');
+                });
+
+                $('#rb1').on('change', function() {
+                    updateLogo(this, '#rb1-logo', '#rb1-team-logo');
+                });
+
+                $('#rb2').on('change', function() {
+                    updateLogo(this, '#rb2-logo', '#rb2-team-logo');
+                });
+
+                $('#wr1').on('change', function() {
+                    updateLogo(this, '#wr1-logo', '#wr1-team-logo');
+                });
+
+                $('#wr2').on('change', function() {
+                    updateLogo(this, '#wr2-logo', '#wr2-team-logo');
+                });
+
+                $('#wr3').on('change', function() {
+                    updateLogo(this, '#wr3-logo', '#wr3-team-logo');
+                });
+
+                $('#flx').on('change', function() {
+                    updateLogo(this, '#flx-logo', '#flx-team-logo');
+                });
+
+                $('#cpt').on('change', function() {
+                    updateLogo(this, '#cpt-logo', '#cpt-team-logo');
+                });
+
+                $('#k').on('change', function() {
+                    updateLogo(this, '#k-logo', '#k-team-logo');
+                });
+
+                // Track selected team and disable players from that team in other dropdowns
+                let selectedTeams = [];
+
+                $(".select2").on('select2:select', function (e) {
+                    let selectedPlayer = e.params.data.element;
+                    let team = $(selectedPlayer).data('team');  // Get the selected player's team
+
+                    // Add the team to the list of selected teams
+                    selectedTeams.push(team);
+
+                    // Disable players from the same team in all other dropdowns
+                    $(".select2 option").each(function() {
+                        let playerTeam = $(this).data('team');
+                        if (selectedTeams.includes(playerTeam) && !$(this).is(':selected')) {
+                            $(this).prop('disabled', true);
+                        }
+                    });
+                });
+
+                // Reset the disabled options when a selection is removed
+                $(".select2").on('select2:unselect', function (e) {
+                    let removedPlayer = e.params.data.element;
+                    let team = $(removedPlayer).data('team');
+
+                    // Remove the team from the selected teams array
+                    selectedTeams = selectedTeams.filter(function(item) {
+                        return item !== team;
+                    });
+
+                    // Enable all players from the removed team
+                    $(".select2 option").each(function() {
+                        let playerTeam = $(this).data('team');
+                        if (playerTeam === team) {
+                            $(this).prop('disabled', false);
+                        }
+                    });
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>

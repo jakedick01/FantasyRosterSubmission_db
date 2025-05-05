@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Submission</title>
+</head>
+<body>
+    <h1>Your Roster Submission</h1>
+    <p><strong>First Name:</strong> {{ submission[1] }}</p>
+    <p><strong>Last Name:</strong> {{ submission[2] }}</p>
+    <p><strong>Email:</strong> {{ submission[3] }}</p>
+    <p><strong>QB:</strong> {{ submission[4] }}</p>
+    <p><strong>RB1:</strong> {{ submission[5] }}</p>
+    <p><strong>RB2:</strong> {{ submission[6] }}</p>
+    <p><strong>WR1:</strong> {{ submission[7] }}</p>
+    <p><strong>WR2:</strong> {{ submission[8] }}</p>
+    <p><strong>WR3:</strong> {{ submission[9] }}</p>
+    <p><strong>Flex:</strong> {{ submission[10] }}</p> <!-- Corrected to match flex -->
+    <p><strong>Captain:</strong> {{ submission[11] }}</p> <!-- Corrected to match captain -->
+    <p><strong>Kicker:</strong> {{ submission[12] }}</p> <!-- Corrected to match kicker -->
+    <p><strong>Submission Time:</strong> {{ submission[13] }}</p>
+
+    <!-- Edit Submission Button -->
+    <form action="{{ url_for('roster') }}" method="get">
+        <button type="submit">Edit Submission</button>
+    </form>
+</body>
+</html>

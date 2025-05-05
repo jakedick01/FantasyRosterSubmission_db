@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Players</title>
+</head>
+<body>
+    <h1>Select NFL Players</h1>
+    <form method="POST" action="/submit">
+        <label for="player1">Select Player 1:</label>
+        <select id="player1" name="player1">
+            {% for player in players %}
+                <option value="{{ player['id'] }}">{{ player['name'] }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="player2">Select Player 2:</label>
+        <select id="player2" name="player2">
+            {% for player in players %}
+                <option value="{{ player['id'] }}">{{ player['name'] }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- Add more players as needed -->
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
