@@ -101,8 +101,8 @@ _Add screenshots of your app running, including form pages and roster tables._
 ## ✍ Author
 
 **Jake Dick**  
-[LinkedIn](https://www.linkedin.com/in/your-profile)  
-[GitHub](https://github.com/your-username)
+[LinkedIn](https://www.linkedin.com/in/jake-dick-2a37aa170/)  
+[GitHub](https://github.com/jakedick01)
 
 ---
 
@@ -111,5 +111,3 @@ This was built as a custom web tool to streamline and store playoff fantasy foot
 
 ---
 
-## 📃 License
-MIT
